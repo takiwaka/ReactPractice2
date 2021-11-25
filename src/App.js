@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { Child } from "./components/Child";
 import "./styles.css";
 
@@ -10,6 +10,7 @@ export default function App() {
 
   const onChangeText = (e) => setText(e.target.value);
   const onClickOpen = () => setOpen(!open);
+  const onClickClose = useCallback(() => setOpen(false), []);
 
   return (
     <div className="App">
@@ -17,7 +18,7 @@ export default function App() {
       <br />
       <br />
       <button onClick={onClickOpen}>表示</button>
-      <Child open={open} />
+      <Child open={open} onClickClose={onClickClose} />
     </div>
   );
 }
